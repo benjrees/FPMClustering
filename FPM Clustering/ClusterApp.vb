@@ -203,7 +203,12 @@ Public Class ClusterApp
             DT = Me.ConnectCSV(myCC.SourceFile, myCC.SQLString)
 
 
+        Catch e As Exception
+            successful = False
+        End Try
 
+        Try
+            Dim dir As New System.IO.DirectoryInfo(myCC.OutputPath)
 
         Catch e As Exception
             successful = False
@@ -511,7 +516,7 @@ Public Class ClusterApp
             out.AppendText("Output data written." & vbCrLf)
 
         Else
-            out.AppendText("Problem reading input data." & vbCrLf)
+            out.AppendText("Problem reading input data or finding output directory." & vbCrLf)
         End If
 
 
