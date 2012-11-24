@@ -1,4 +1,5 @@
 Imports System.IO
+Imports System.Data.OleDb
 
 
 Public Class ClusterApp
@@ -60,27 +61,22 @@ Public Class ClusterApp
        "Data Source=" & CSVFolderPath & ";" & _
        "Extended Properties=""text;HDR=Yes;FMT=Delimited"""
 
-            Dim sqlSelect As String
-            Dim cn As New ADODB.Connection
-            Dim rs As New ADODB.Recordset
+            
+            Dim cn As New OleDbConnection(strConnString)
 
+            Dim sqlSelect As String
             sqlSelect = sqlString.Replace(TABLENAME, CSVFileName)
 
-            cn.Open(strConnString)
-
+            cn.Open()
+            
             'Fetch records from CSV
 
-            rs.Open(sqlSelect, cn, _
-            ADODB.CursorTypeEnum.adOpenStatic, _
-            ADODB.LockTypeEnum.adLockReadOnly, _
-            -1)
+            Dim objCmdSelect As New OleDbCommand(sqlSelect, cn)
+            Dim da As New OleDbDataAdapter()
+            da.SelectCommand = objCmdSelect
 
-            'Fill dataset with the records from CSV file
-            Dim da As New OleDb.OleDbDataAdapter
-            da.Fill(dt, rs)
+            da.Fill(dt)
 
-
-            rs.Close()
             cn.Close()
 
         Catch e As Exception
@@ -299,7 +295,7 @@ Public Class ClusterApp
 
             For i As Integer = 0 To myCC.Iterations - 1
 
-                run.Update(dEta, dSigma,myCC.Normalise)
+                run.Update(dEta, dSigma, myCC.Normalise)
 
                 'dEta = (myCC.Eta / (1 + i / tor))
                 'dSigma = (myCC.Sigma / (1 + i / tor))
@@ -398,7 +394,7 @@ Public Class ClusterApp
                     sb.Append(myCC.Names(i)).Append(",")
                 Next
 
-                
+
                 For i As Integer = 0 To myCC.Names.Count - 1
                     sb.Append(myCC.Names(i)).Append("_sd").Append(",")
                 Next
@@ -416,7 +412,7 @@ Public Class ClusterApp
                         sb.Append(clusters(j, i)).Append(",")
 
                     Next
-                    
+
                     For i As Integer = 0 To myCC.Names.Count - 1
                         sb.Append(sds(i)).Append(",")
                     Next
@@ -453,7 +449,7 @@ Public Class ClusterApp
             Dim outputFile As String = OUTPUTFILEBASE
 
 
-            
+
 
             outputFile = System.IO.Path.Combine(myCC.OutputPath, outputFile & max & "." & OUTPUTFILESUFFIX)
 
