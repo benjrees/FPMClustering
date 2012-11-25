@@ -87,6 +87,12 @@
     <Compile Include="CCCheckBox.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CCMapDisplay.Designer.vb">
+      <DependentUpon>CCMapDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CCMapDisplay.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ChooseInputColumns.Designer.vb">
       <DependentUpon>ChooseInputColumns.vb</DependentUpon>
     </Compile>
@@ -124,6 +130,9 @@
     <EmbeddedResource Include="CCCheckBox.resx">
       <SubType>Designer</SubType>
       <DependentUpon>CCCheckBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CCMapDisplay.resx">
+      <DependentUpon>CCMapDisplay.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChooseInputColumns.resx">
       <SubType>Designer</SubType>
