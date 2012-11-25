@@ -113,7 +113,6 @@ Public Class ClusterApp
 
         Dim openFileDialog1 As New OpenFileDialog()
 
-        'openFileDialog1.InitialDirectory = "c:\"
         openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*"
         openFileDialog1.FilterIndex = 1
         openFileDialog1.RestoreDirectory = True
@@ -169,7 +168,6 @@ Public Class ClusterApp
 
         Dim openFileDialog1 As New OpenFileDialog()
 
-        'openFileDialog1.InitialDirectory = "c:\"
         openFileDialog1.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*"
         openFileDialog1.FilterIndex = 1
         openFileDialog1.RestoreDirectory = True
@@ -373,11 +371,6 @@ Public Class ClusterApp
 
             Try
 
-                'Dim outSDs() As Single
-
-                'outSDs = run.OutputSDs()
-
-
                 Dim osr As New StreamWriter(clusterFile)
 
                 Dim sb As New System.Text.StringBuilder()
@@ -550,14 +543,6 @@ Public Class ClusterApp
         DT = Me.ConnectCSV(myCC.SourceFile, myCC.SQLString)
 
 
-        'For Each a As System.Data.DataColumn In DT.Columns
-        '    For Each b As System.Data.DataRow In DT.Rows
-        '        System.Console.WriteLine(b(a.ColumnName))
-
-        '    Next
-        'Next
-
-
 
         Dim cit As New ChooseInputColumns(DT.Columns, myCC.Names, myCC.WeightsCol)
 
@@ -629,10 +614,6 @@ Public Class ClusterApp
 
         Dim folderBrowserDialog1 As New FolderBrowserDialog()
 
-        'folderBrowserDialog1.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*"
-        'openFileDialog1.FilterIndex = 1
-        'folderBrowserDialog1.RestoreDirectory = True
-
         If folderBrowserDialog1.ShowDialog() = DialogResult.OK Then
             Try
 
@@ -654,30 +635,6 @@ Public Class ClusterApp
         myCC.Neighbourhood = NeighbourhoodFunction.Gaussian
     End Sub
 
-
-    '    Public Shared Function CleanDataTable(ByVal dt As DataTable) As DataTable
-
-    '        For a As Integer = 0 To dt.Rows.Count - 1
-    '            For i As Integer = 0 To dt.Columns.Count - 1
-
-    '                If (dt.Rows(a)(i) == DBNull.Value) Then
-    '                End If
-
-
-    '       dim type as Type = dt.Columns[i].DataType
-    '       if (type == typeof(int) || type == typeof(float) || type == typeof(double))  then
-
-    '                        dt.Columns([i].ReadOnly = False
-    '        dt.Rows[a][i] = 0.0F
-    '                End If
-    '            Next
-    'next
-    '        Next
-    'next
-
-
-    '        Return dt
-    '    End Function
 
 
 

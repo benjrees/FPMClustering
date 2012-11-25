@@ -100,11 +100,6 @@ Public Class ClusterAlgorithm
                 If (Not Single.IsNaN(x(point, j))) Then
                     'If iNorm Then
                     d += Math.Pow((x(point, j) - wt(i, j)), 2)
-                    'Else
-                    '    If sds(j) <> 0 Then
-                    '        d += Math.Pow((x(point, j) - wt(i, j)) / sds(j), 2)
-                    '    End If
-                    'End If
                 End If
 
             Next
