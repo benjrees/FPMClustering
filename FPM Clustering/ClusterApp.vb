@@ -57,11 +57,11 @@ Public Class ClusterApp
         Dim dt = New DataTable
         Try
 
-            Dim strConnString As String = "Provider=Microsoft.Jet.OLEDB.4.0;" & _
-       "Data Source=" & CSVFolderPath & ";" & _
+            Dim strConnString As String = "Provider=Microsoft.ACE.OLEDB.12.0;" &
+       "Data Source=" & CSVFolderPath & ";" &
        "Extended Properties=""text;HDR=Yes;FMT=Delimited"""
 
-            
+
             Dim cn As New OleDbConnection(strConnString)
 
             Dim sqlSelect As String
